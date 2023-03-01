@@ -29,3 +29,14 @@ This is a codelab project guided by [Android Developer: Jetpack Compose Basics](
 - UI 裡加入越多元件，建立的巢狀結構層級也會越來越多。
 - 函式變得太大，就會影響程式的判讀容易程度。
 - 建立重複利用小型的元件，避免前面兩個問題。
+
+### Step 6
+
+- Compose 中的三個基本標準版面配置元素為 Column (垂直排列)、Row (水平排列) 和 Box (堆疊)。
+- 可組合函式的使用方式和 Kotlin 其他函式相同。可以藉由新增陳述式影響 UI 的顯示方式。
+- 尚未幫可組合項設定大小或設定任何尺寸限制，因此每一列都會盡可能採用最小的空間，預覽也是如此。 
+- `@Preview` 註解新增 `widthDp` 參數: 設定預覽寬度。
+- 修飾詞也可以超載，例如您可以指定幾種不同的邊框間距建立方式。
+- 如果想為元素新增多個修飾詞，只要鏈結即可。
+- weight 修飾詞可以用元素填滿可用空間，因此屬於「有彈性」，這樣做會推擠其他沒有權重的元素，這些元素屬於「無彈性」。這也會讓 fillMaxWidth 修飾詞變得沒有必要。
+- Compose 可以按照質感設計按鈕規格：Button、ElevatedButton、FilledTonalButton、OutlinedButton 和 TextButton 提供多種 Button。
