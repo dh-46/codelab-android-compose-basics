@@ -11,3 +11,7 @@ This is a codelab project guided by [Android Developer: Jetpack Compose Basics](
 - `setContent` Block 負責定義該 Activity 版面配置。
 - `ComposeBasicCodelabTheme` 設定樣式主題
 - `@Preview` 建立 Android Studio 中的 UI 預覽。
+- `Surface` 可以設定背景顏色。
+  - 當顏色設定為 `MaterialTheme.colorScheme.primary` 時，因為 `Surface` 也是 MaterialDesign 的元件，所以會自動為文字選合適的顏色。
+- 修飾詞 `modifier`: 指示 UI 元素如何在其上層布局內部安排版面配置、顯示或行為。
+  - 可以用數十種修飾詞對齊、製作動畫效果、展示、製作可以點擊或捲動的項目、變形。[Compose 修飾詞清單](https://developer.android.com/jetpack/compose/modifiers-list?hl=zh-tw)
