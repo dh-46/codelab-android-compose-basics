@@ -69,11 +69,19 @@ This is a codelab project guided by [Android Developer: Jetpack Compose Basics](
 - 如何向上傳遞事件？答案是**向下傳遞回呼**。回呼是傳遞給其他函式當做引數的函式，在發生事件時，系統就會執行這個函式。
   - 藉由傳遞函式 (而不是狀態) 給 `OnboardingScreen`，這個可組合項更容易重複利用，也能保護狀態不會因為其他可組合項而變動。
 
-### Step.9 
+### Step. 9 
 
 - `LazyColumn`
   - 只會轉譯螢幕上看得到的項目，當轉譯龐大清單的時候能夠提昇效能。
   - `LazyColumn` 和 `LazyRow` 在 Android Views 裡和 `RecyclerView` 相等。
   - `items` block: 在這裡寫入個別項目的轉譯邏輯。
     - 請務必確定已經匯入 androidx.compose.foundation.lazy.items，因為 Android Studio 預設會挑選其他項目函式。
-  -  不會像 `RecyclerView` 一樣回收子項。當您捲動的時候，這個項目會產生新的可組合項，而依然可以保持優良的效能，因為比起執行個體化 Android Views 來說，產生可組合項耗用的資源較少。
+  - 不會像 `RecyclerView` 一樣回收子項。當您捲動的時候，這個項目會產生新的可組合項，而依然可以保持優良的效能，因為比起執行個體化 Android Views 來說，產生可組合項耗用的資源較少。
+
+### Step. 10
+
+- 問題: 在裝置上執行應用程式時，如果按下按鈕並旋轉畫面，系統會再度顯示新手上路畫面。
+  - 原因: 只有在可組合項維持在組成裡的時候，`remember` 函式才能正常運作。
+    - 每次旋轉時，整個活動都會重新啟動，也因此喪失所有狀態。一旦變更設定，或是終止程序，也會發生同樣的情形。
+  - 解法: 不使用 `remember`，而是 `rememberSaveable`。
+    - `rememberSaveable` 可在變更設定 (如旋轉) 和終止程序之後儲存每個狀態。
