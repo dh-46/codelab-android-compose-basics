@@ -85,3 +85,15 @@ This is a codelab project guided by [Android Developer: Jetpack Compose Basics](
     - 每次旋轉時，整個活動都會重新啟動，也因此喪失所有狀態。一旦變更設定，或是終止程序，也會發生同樣的情形。
   - 解法: 不使用 `remember`，而是 `rememberSaveable`。
     - `rememberSaveable` 可在變更設定 (如旋轉) 和終止程序之後儲存每個狀態。
+
+### Step. 11 
+
+- Compose 裡有很多方式可以為 UI 製作動畫效果：
+  - 高層級的 API 製作簡單的動畫
+  - 低層級的方法製作可以全面控制的複雜轉場效果
+- `animateDpAsState`: 這個可組合項會回傳狀態物件，物件的 `value` 會持續由動畫更新，直到動畫結束為止。這個可組合項會使用「指定值」，類型為 `Dp`。
+  - `animationSpec`: 可以用這個參數自訂 `animateDpAsState` 動畫內容。
+- `coerceAtLeast()`: 確保數值不會小於指定的數值。
+- `spring` 規格不使用任何和時間有關的參數，而是仰賴實際的屬性 (阻尼和硬度)，讓動畫更生動自然。
+- 任何用 `animate*AsState` 建立的動畫都可以中斷。換句話說，如果動畫播放期間指定值有所改變，`animate*AsState` 就會重新播放動畫，並指向新的值。中斷特別可以讓彈跳動畫更自然
+- 其他不同種類的動畫，請嘗試使用其他 `spring` 參數、其他規格 (`tween`、`repeatable`) 和其他函式：`animateColorAsState` 或 [其他類型的動畫 API](https://developer.android.com/jetpack/compose/animation?hl=zh-tw)。

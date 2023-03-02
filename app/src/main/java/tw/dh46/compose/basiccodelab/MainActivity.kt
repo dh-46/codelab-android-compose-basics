@@ -3,6 +3,9 @@ package tw.dh46.compose.basiccodelab
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -55,7 +58,6 @@ fun MyAppPreview() {
         MyApp(Modifier.fillMaxSize())
     }
 }
-
 @Composable
 private fun Greetings(
     modifier: Modifier = Modifier,
@@ -82,7 +84,13 @@ fun Greeting(name: String) {
     // Expand state
     val expanded = remember { mutableStateOf(false) }
     // Expand padding
-    val extraPadding = if (expanded.value) 48.dp else 0.dp
+    val extraPadding by animateDpAsState(
+        targetValue = if (expanded.value) 48.dp else 0.dp,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
     // Set background color for Surface
     Surface(
         color = MaterialTheme.colorScheme.primary,
@@ -93,7 +101,7 @@ fun Greeting(name: String) {
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(bottom = extraPadding)
+                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello, ")
                 Text(text = name)
