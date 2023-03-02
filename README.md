@@ -40,3 +40,17 @@ This is a codelab project guided by [Android Developer: Jetpack Compose Basics](
 - 如果想為元素新增多個修飾詞，只要鏈結即可。
 - weight 修飾詞可以用元素填滿可用空間，因此屬於「有彈性」，這樣做會推擠其他沒有權重的元素，這些元素屬於「無彈性」。這也會讓 fillMaxWidth 修飾詞變得沒有必要。
 - Compose 可以按照質感設計按鈕規格：Button、ElevatedButton、FilledTonalButton、OutlinedButton 和 TextButton 提供多種 Button。
+
+### Step 7
+
+- 為什麼按鈕狀態的變數不能寫在 Composable function 的 Block 裡?
+  - 在 Block 內的資料異動並不會讓 Compose 偵測到 "狀態改變" 。(Compose 並未追蹤這個變數)
+  - 每次呼叫這個 Composable function 也會讓 Block 內的變數重設。
+  - Compose 應用程式會藉由呼叫可組合函式將資料轉換為 UI。當資料變更時，Compose 會用新的資料重新執行這些函式，建立更新過的 UI，這稱為「重新組成」。Compose 也會注意每個可組合項需要哪些資料，以便它只需要重新組成資料有變的元件，並略過不受影響的元件。
+- 使用 State 和 MutableState 來儲存狀態
+  - 這兩個都是保留值的介面，只要這個值有變化，就會觸發 UI 更新 (重新組成)。
+- `remember`: 記住可變動狀態。
+    - 因為不能把 mutableStateOf 指派給 Composable function 裡的變數。(每次呼叫值會被重設)
+    - 它可以「保護」項目不受重新組成影響，讓系統不會重設狀態。
+    - **請注意，如果您從螢幕其他部分呼叫同一項可組合項，您將會建立不同的 UI 元素，每個元素都有自己的狀態版本。您可以把內部狀態當成類別裡的私人變數。**
+    - Composable function 會自動「訂閱」這個狀態。當狀態變更時，可組合項會讀取這些重新組成的欄位，以便顯示更新內容。
