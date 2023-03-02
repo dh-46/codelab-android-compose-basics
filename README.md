@@ -97,3 +97,20 @@ This is a codelab project guided by [Android Developer: Jetpack Compose Basics](
 - `spring` 規格不使用任何和時間有關的參數，而是仰賴實際的屬性 (阻尼和硬度)，讓動畫更生動自然。
 - 任何用 `animate*AsState` 建立的動畫都可以中斷。換句話說，如果動畫播放期間指定值有所改變，`animate*AsState` 就會重新播放動畫，並指向新的值。中斷特別可以讓彈跳動畫更自然
 - 其他不同種類的動畫，請嘗試使用其他 `spring` 參數、其他規格 (`tween`、`repeatable`) 和其他函式：`animateColorAsState` 或 [其他類型的動畫 API](https://developer.android.com/jetpack/compose/animation?hl=zh-tw)。
+
+### Step. 12
+
+- `ComposeBasicCodelabTheme`
+  - `MaterialTheme` 是可以反映質感設計規格樣式原則的可組合函式。這項樣式資訊可以向下串聯 `content` 內的元件，以便讀取資訊並自行設定樣式。
+  - 因為套用的 `ComposeBasicCodelabTheme` 主題已經有套用 `MaterialTheme`，所以可以取用 `MaterialTheme` 的三種屬性：`colorScheme`、`typography` 和 `shapes`
+- `Text(text = name, style = MaterialTheme.typography.headlineMedium)`
+  - 除了套用 `MaterialTheme.typography.headlineMedium`，可以自行建立 `TextStyle`。
+- 建議您把色彩、形狀和字型等樣式保留在 `MaterialTheme` 裡面。
+  - 如果直接 Hardcode 樣式，會比較難實作深色模式。
+- `copy`: 可以修改已經定義好的樣式。
+  - `MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.ExtraBold)`
+- 設定深色模式預覽
+  - 直接在要新增的 Preview Composable Function 上新增一個 `@Preview()` 並包含 `uiMode = UI_MODE_NIGHT_YES`。
+- `dynamicColor`: [動態色彩](https://m3.material.io/styles/color/dynamic-color/overview)
+  - 預覽畫面是使用動態色彩。
+  - 要查看色彩配置的未自動調整版本，請在 API 級別低於 31 (對應於 Android S，其中已導入自動調整的色彩) 的裝置上執行您的應用程式。
