@@ -114,3 +114,13 @@ This is a codelab project guided by [Android Developer: Jetpack Compose Basics](
 - `dynamicColor`: [動態色彩](https://m3.material.io/styles/color/dynamic-color/overview)
   - 預覽畫面是使用動態色彩。
   - 要查看色彩配置的未自動調整版本，請在 API 級別低於 31 (對應於 Android S，其中已導入自動調整的色彩) 的裝置上執行您的應用程式。
+
+### Step. 13
+
+- `stringResource(id)`: 引入字串資源
+- `IconButton`、`Icon` 圖示按鈕
+- 使用 MaterialIcon 資源 
+  - `implementation "androidx.compose.material:material-icons-extended:$compose_version"`
+  - `Icons.Filled.ExpandLess` 和 `Icons.Filled.ExpandMore`
+- 卡片效果可以使用 [`Card`](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary?hl=zh-tw#card)
+- `animateContentSize`: 內容大小動畫。
