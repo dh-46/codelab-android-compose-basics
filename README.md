@@ -68,3 +68,12 @@ This is a codelab project guided by [Android Developer: Jetpack Compose Basics](
 - 在 Compose 當中是不用隱藏 UI 元素的。只需要不把這些元素加到組成裡就好，然後這些元素就不會加入 Compose 產生的 UI 樹狀結構了。
 - 如何向上傳遞事件？答案是**向下傳遞回呼**。回呼是傳遞給其他函式當做引數的函式，在發生事件時，系統就會執行這個函式。
   - 藉由傳遞函式 (而不是狀態) 給 `OnboardingScreen`，這個可組合項更容易重複利用，也能保護狀態不會因為其他可組合項而變動。
+
+### Step.9 
+
+- `LazyColumn`
+  - 只會轉譯螢幕上看得到的項目，當轉譯龐大清單的時候能夠提昇效能。
+  - `LazyColumn` 和 `LazyRow` 在 Android Views 裡和 `RecyclerView` 相等。
+  - `items` block: 在這裡寫入個別項目的轉譯邏輯。
+    - 請務必確定已經匯入 androidx.compose.foundation.lazy.items，因為 Android Studio 預設會挑選其他項目函式。
+  -  不會像 `RecyclerView` 一樣回收子項。當您捲動的時候，這個項目會產生新的可組合項，而依然可以保持優良的效能，因為比起執行個體化 Android Views 來說，產生可組合項耗用的資源較少。
